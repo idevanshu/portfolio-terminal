@@ -14,10 +14,7 @@ const Hero = () => {
   ];
 
   const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Devanshu_Panigrahi_Resume.pdf';
-    link.click();
+    window.open('https://drive.google.com/file/d/1QLbOpeWxc3czybv2Vuz5qB3YeY8NKdd7/view?usp=sharing', '_blank', 'noopener,noreferrer');
   };
 
   const scrollToNext = () => {
@@ -39,7 +36,7 @@ const Hero = () => {
       </p>
       
       <p className="text-lg text-gray-300 font-mono max-w-3xl mx-auto mb-3">
-        I'm into fast networking, computers, and building innovative solutions. Currently exploring <span className="text-green-400">video-streaming codecs</span>, <span className="text-green-400">AI agents</span>, and automated AI-driven IoT systems.
+        I'm into fast networking, computers, and building innovative solutions. Currently exploring <span className="text-green-400">web3</span>, <span className="text-green-400">AI agents</span>, and automated AI-driven IoT systems.
       </p>
       
       <p className="text-lg text-gray-300 font-mono mb-8">
@@ -58,7 +55,6 @@ const Hero = () => {
         <span className="mr-2">$</span>ls ./Skills
       </h2>
       
-      {/* Simple grid layout - no marquee */}
       <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto mb-20">
         {skills.map((skill, i) => (
           <div 

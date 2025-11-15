@@ -8,6 +8,33 @@ const Terminal = () => {
   const inputRef = useRef(null);
   const terminalRef = useRef(null);
 
+  // Resume download function
+  const downloadResume = () => {
+    const fileId = '1QLbOpeWxc3czybv2Vuz5qB3YeY8NKdd7';
+    const directDownloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    
+    // Create a temporary anchor element to trigger download
+    const link = document.createElement('a');
+    link.href = directDownloadUrl;
+    link.setAttribute('download', 'Devanshu_Resume.pdf');
+    link.setAttribute('target', '_blank');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    return {
+      output: `Connecting to drive.google.com...
+Connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/pdf]
+Saving to: 'Devanshu_Resume.pdf'
+
+Devanshu_Resume.pdf    100%[===================>]  
+
+✓ Successfully downloaded 'Devanshu_Resume.pdf'`,
+    };
+  };
+
   const commands = {
     help: () => ({
       output: `Available commands:
@@ -17,6 +44,7 @@ const Terminal = () => {
   education   - View my education
   experience  - See my work experience
   contact     - Get my contact information
+  resume      - Download my resume
   repo        - View GitHub repository
   clear       - Clear terminal
   help        - Show this help message`,
@@ -26,7 +54,7 @@ const Terminal = () => {
       output: `Hello, I'm Devanshu, a Computer Science undergraduate from India.
       
 I'm into fast networking, computers, and building innovative solutions.
-Currently exploring video-streaming codecs, AI agents, and automated AI-driven IoT systems.
+Currently exploring web3, AI agents, and automated AI-driven IoT systems.
 
 I love solving complex problems and turning ideas into reality.`,
     }),
@@ -112,10 +140,10 @@ Skills: React.js, Python, Flask, Streamlit, FFmpeg, Docker, API Development`,
     contact: () => ({
       output: `Contact Information:
 
-Email: devanshupanigrahi@gmail.com
+Email: [devanshupanigrahi@gmail.com](mailto:devanshupanigrahi@gmail.com)
 GitHub: github.com/idevanshu
 x.com(twitter): x.com/iamdevanshu04
-LinkedIn: https://www.linkedin.com/in/devanshu-panigrahi-507097362/
+LinkedIn: [https://www.linkedin.com/in/devanshu-panigrahi-507097362/](https://www.linkedin.com/in/devanshu-panigrahi-507097362/)
 Location: India
 
 Feel free to reach out for collaboration or opportunities!`,
@@ -126,10 +154,13 @@ Feel free to reach out for collaboration or opportunities!`,
 Star ⭐ the repo if you like it!`,
     }),
 
+    // Resume download command
+    resume: downloadResume,
+
     clear: () => ({ clear: true }),
 
     ls: () => ({
-      output: `about.txt  skills.txt  projects.txt  education.txt  experience.txt  contact.txt`,
+      output: `about.txt  skills.txt  projects.txt  education.txt  experience.txt  contact.txt  resume.pdf`,
     }),
 
     whoami: () => ({
@@ -144,6 +175,7 @@ Star ⭐ the repo if you like it!`,
         content: `Welcome to Portfolio Terminal! 🚀
 Type 'help' to see list of available commands.
 Type 'repo' to check out the github.
+Type 'resume' to download my resume.
 --`,
       },
     ]);
