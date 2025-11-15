@@ -140,10 +140,10 @@ Skills: React.js, Python, Flask, Streamlit, FFmpeg, Docker, API Development`,
     contact: () => ({
       output: `Contact Information:
 
-Email: [devanshupanigrahi@gmail.com](mailto:devanshupanigrahi@gmail.com)
+Email: devanshupanigrahi@gmail.com
 GitHub: github.com/idevanshu
 x.com(twitter): x.com/iamdevanshu04
-LinkedIn: [https://www.linkedin.com/in/devanshu-panigrahi-507097362/](https://www.linkedin.com/in/devanshu-panigrahi-507097362/)
+LinkedIn: https://www.linkedin.com/in/devanshu-panigrahi-507097362/
 Location: India
 
 Feel free to reach out for collaboration or opportunities!`,
