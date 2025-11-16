@@ -55,8 +55,7 @@ Devanshu_Resume.pdf   100%[===================>]
       output: `Hello, I'm Devanshu, a Computer Science undergraduate from India.
 I'm into fast networking, computers, and building innovative solutions.
 Currently exploring web3, AI agents, and automated AI-driven IoT systems.
-I love solving complex problems and turning ideas into reality.`,
-    }),
+I love solving complex problems and turning ideas into reality.`,}),
 
     projects: () => ({
       output: `Featured Projects:
@@ -214,11 +213,7 @@ Type 'resume' to download my resume.
       if (result.clear) {
         const welcomeMsg = {
           type: 'output',
-          content: `Welcome to Portfolio Terminal! 🚀
-Type 'help' to see list of available commands.
-Type 'repo' to check out the GitHub.
-Type 'resume' to download my resume.
---`,
+          content: ``,
         };
         setHistory([welcomeMsg]);
         setFullHistory([welcomeMsg]);
