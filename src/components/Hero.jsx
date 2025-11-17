@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TerminalWidget from './TerminalWidget';
+import ContactFormModal from './ContactFormModal';
+
+
 
 const Hero = () => {
+  const [showForm, setShowForm] = useState(false);
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-[#0a0e27]">
       <div className="max-w-7xl w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
@@ -93,7 +97,8 @@ const Hero = () => {
           </div>
         </div>
 
-        <TerminalWidget />
+        <TerminalWidget setShowForm={setShowForm} />
+         <ContactFormModal showForm={showForm} setShowForm={setShowForm} />
       </div>
     </div>
   );

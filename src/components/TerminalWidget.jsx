@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const TerminalWidget = () => {
+const TerminalWidget = ({ setShowForm }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([]);
   const [fullHistory, setFullHistory] = useState([]);
@@ -45,6 +45,7 @@ Devanshu_Resume.pdf   100%[===================>]
   education  - View my education
   experience - See my work experience
   contact    - Get my contact information
+  dm         - Send me a direct message
   resume     - Download my resume
   repo       - View GitHub repository
   clear      - Clear terminal
@@ -52,11 +53,8 @@ Devanshu_Resume.pdf   100%[===================>]
     }),
 
     about: () => ({
-      output: `Hello, I'm Devanshu, a Computer Science undergraduate from India.
-I'm into fast networking, computers, and building innovative solutions.
-Currently exploring web3, AI agents, and automated AI-driven IoT systems.
-I love solving complex problems and turning ideas into reality.`,
-    }),
+      output: `I'm a Computer Science undergraduate from India with a passion for building 
+innovative solutions that make a difference. My journey in tech has been driven by curiosity and a love for solving complex problems.`,}),
 
     projects: () => ({
       output: `Featured Projects:
@@ -113,10 +111,10 @@ Skills: React.js, Python, Flask, Streamlit, FFmpeg, Docker, API Development`,
 
     contact: () => ({
       output: `Contact Information:
-  GitHub:   github.com/idevanshu
-  X:        x.com/iamdevanshu04
-  LinkedIn: www.linkedin.com/in/idevanshu
-  Location: India
+GitHub:   github.com/idevanshu
+dm:       Type "dm" send a direct message.
+X:        x.com/iamdevanshu04
+LinkedIn: www.linkedin.com/in/idevanshu
 
 Feel free to reach out for collaboration or opportunities!`,
     }),
@@ -130,6 +128,15 @@ Star ⭐ the repo if you like it!`,
 
     resume: downloadResume,
     clear: () => ({ clear: true }),
+
+      dm: () => {
+      if (setShowForm) {
+        setShowForm(true);
+      }
+      return {
+        output: `Opening contact form... 📧`,
+      };
+    },
 
     ls: () => ({
       output: `about.txt
