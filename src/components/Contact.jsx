@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ContactFormModal from './ContactFormModal';
 
 const Contact = () => {
   const [copied, setCopied] = useState('');
+  const [showForm, setShowForm] = useState(false);
 
   const copyToClipboard = (text, type) => {
     navigator.clipboard.writeText(text);
@@ -107,6 +109,22 @@ const Contact = () => {
                   </div>
                 </div>
               ))}
+
+              {/* Send Message Button */}
+              <div className="bg-black border border-slate-700 rounded-lg p-5 hover:border-emerald-400 transition-all hover:shadow-lg hover:shadow-emerald-500/10">
+                <div className="flex items-center justify-between">
+                  <div className="font-mono">
+                    <h3 className="text-emerald-400 font-bold mb-1">Send Direct Message</h3>
+                    <p className="text-slate-400 text-xs">Get in touch via contact form</p>
+                  </div>
+                  <button
+                    onClick={() => setShowForm(true)}
+                    className="px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-400 rounded text-emerald-400 font-mono text-sm transition-all"
+                  >
+                    Send Message →
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -170,6 +188,13 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal Component */}
+      <ContactFormModal 
+        showForm={showForm} 
+        setShowForm={setShowForm} 
+        availability={availability}
+      />
 
       <style jsx>{`
         @keyframes fadeIn {
