@@ -17,7 +17,6 @@ const ContactFormModal = ({ showForm, setShowForm, availability }) => {
       setIpData(data);
     } catch (error) {
       console.error('Error fetching IP data:', error);
-      // Fallback to ipify if ipapi.co fails
       try {
         const ipResponse = await fetch('https://api.ipify.org?format=json');
         const ipOnly = await ipResponse.json();
@@ -35,10 +34,27 @@ const ContactFormModal = ({ showForm, setShowForm, availability }) => {
 
     const formData = new FormData(event.target);
     
-    // Get form values
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
+    // Get form values and trim them
+    const name = formData.get('name').trim();
+    const email = formData.get('email').trim();
+    const message = formData.get('message').trim();
+    
+    // Basic validation
+    if (!name || name.length < 2) {
+      setFormStatus("error");
+      setTimeout(() => setFormStatus(''), 5000);
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormStatus("error");
+      setTimeout(() => setFormStatus(''), 5000);
+      return;
+    }
+    if (!message || message.length < 10) {
+      setFormStatus("error");
+      setTimeout(() => setFormStatus(''), 5000);
+      return;
+    }
     
     // Create formatted email with metadata (user won't see this)
     const emailHTML = `
@@ -157,7 +173,7 @@ Sent from idevanshu.com contact form
 
     // Prepare form data for Web3Forms
     const submitData = new FormData();
-    submitData.append("access_key", "bffafb83-da24-4d2a-81d1-37342519f5f1"); // ← REPLACE WITH YOUR KEY
+    submitData.append("access_key", "bffafb83-da24-4d2a-81d1-37342519f5f1");
     submitData.append("name", name);
     submitData.append("email", email);
     submitData.append("message", emailText);
@@ -176,11 +192,12 @@ Sent from idevanshu.com contact form
       if (data.success) {
         setFormStatus("success");
         event.target.reset();
+        // AUTO-CLOSE AFTER 1.5 SECONDS
         setTimeout(() => {
           setFormStatus('');
           setShowForm(false);
           setIpData(null);
-        }, 3000);
+        }, 1500);
       } else {
         setFormStatus("error");
         setTimeout(() => setFormStatus(''), 5000);
@@ -230,6 +247,7 @@ Sent from idevanshu.com contact form
               name="name"
               placeholder="Your name"
               required
+              minLength="2"
               disabled={formStatus === 'sending'}
               className="w-full bg-black border border-slate-700 rounded px-4 py-3 text-slate-300 font-mono focus:outline-none focus:border-emerald-400 transition-all placeholder:text-slate-600 disabled:opacity-50"
             />
@@ -260,6 +278,7 @@ Sent from idevanshu.com contact form
               placeholder="Your message..."
               rows="6"
               required
+              minLength="10"
               disabled={formStatus === 'sending'}
               className="w-full bg-black border border-slate-700 rounded px-4 py-3 text-slate-300 font-mono focus:outline-none focus:border-emerald-400 transition-all placeholder:text-slate-600 resize-y disabled:opacity-50"
             />
@@ -288,7 +307,7 @@ Sent from idevanshu.com contact form
           {formStatus === 'success' && (
             <div className="bg-emerald-500/10 border border-emerald-500/30 rounded px-4 py-3 flex items-center gap-3 text-emerald-400 font-mono text-sm animate-fade-in">
               <span>✓</span>
-              <span>Message sent! I'll respond within {availability.response}.</span>
+              <span>Message sent! I'll respond within {availability?.response || '24-48 hours'}.</span>
             </div>
           )}
 
@@ -296,7 +315,7 @@ Sent from idevanshu.com contact form
           {formStatus === 'error' && (
             <div className="bg-red-500/10 border border-red-500/30 rounded px-4 py-3 flex items-center gap-3 text-red-400 font-mono text-sm animate-fade-in">
               <span>✗</span>
-              <span>Error sending message. Please try again.</span>
+              <span>Error sending message. Please check your inputs and try again.</span>
             </div>
           )}
         </form>
