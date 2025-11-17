@@ -89,7 +89,6 @@ const Hero = () => {
               <a href="https://github.com/idevanshu" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition">→ GitHub</a>
               <a href="https://linkedin.com/in/idevanshu" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition">→ LinkedIn</a>
               <a href="https://x.com/iamdevanshu04" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition">→ X</a>
-              <a href="mailto:devanshupanigrahi@gmail.com" className="text-cyan-400 hover:text-cyan-300 transition">→ Email</a>
             </div>
           </div>
         </div>

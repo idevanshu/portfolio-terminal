@@ -55,7 +55,8 @@ Devanshu_Resume.pdf   100%[===================>]
       output: `Hello, I'm Devanshu, a Computer Science undergraduate from India.
 I'm into fast networking, computers, and building innovative solutions.
 Currently exploring web3, AI agents, and automated AI-driven IoT systems.
-I love solving complex problems and turning ideas into reality.`,}),
+I love solving complex problems and turning ideas into reality.`,
+    }),
 
     projects: () => ({
       output: `Featured Projects:
@@ -112,8 +113,6 @@ Skills: React.js, Python, Flask, Streamlit, FFmpeg, Docker, API Development`,
 
     contact: () => ({
       output: `Contact Information:
-
-  Email:    devanshupanigrahi@gmail.com
   GitHub:   github.com/idevanshu
   X:        x.com/iamdevanshu04
   LinkedIn: www.linkedin.com/in/idevanshu
@@ -176,7 +175,7 @@ Type 'resume' to download my resume.
       // When minimized, show only last 2 conversations
       const welcomeMessage = fullHistory[0];
       const recentEntries = fullHistory.slice(-4);
-      
+
       if (fullHistory.length > 5) {
         setHistory([welcomeMessage, ...recentEntries]);
       } else {
@@ -206,7 +205,7 @@ Type 'resume' to download my resume.
     setHistoryIndex(-1);
 
     const newCommandEntry = { type: 'command', content: cmd };
-    
+
     if (commands[trimmedCmd]) {
       const result = commands[trimmedCmd]();
 

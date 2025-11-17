@@ -12,14 +12,6 @@ const Contact = () => {
 
   const contactMethods = [
     {
-      icon: '📧',
-      label: 'Email',
-      value: 'devanshupanigrahi@gmail.com',
-      link: 'mailto:devanshupanigrahi@gmail.com',
-      command: 'email@dev',
-      description: 'Best for formal inquiries',
-    },
-    {
       icon: '💻',
       label: 'GitHub',
       value: 'github.com/idevanshu',
@@ -71,7 +63,7 @@ const Contact = () => {
             <p className="text-slate-300 text-sm sm:text-base mb-4">
               Let's build something amazing together
             </p>
-            
+
             {/* Status Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -99,17 +91,8 @@ const Contact = () => {
                         <h3 className="text-emerald-400 font-bold">{contact.label}</h3>
                         <span className="text-xs text-slate-500">{contact.command}</span>
                       </div>
-                      
+
                       <p className="text-slate-400 text-xs mb-2">{contact.description}</p>
-                      
-                      <a
-                        href={contact.link}
-                        target={contact.label !== 'Email' ? '_blank' : undefined}
-                        rel={contact.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                        className="text-cyan-400 hover:text-cyan-300 transition text-sm break-all block mb-3"
-                      >
-                        {contact.value}
-                      </a>
 
                       {/* Action Buttons */}
                       <div className="flex gap-2">
@@ -119,14 +102,6 @@ const Contact = () => {
                         >
                           {copied === contact.label ? '✓ Copied' : 'Copy'}
                         </button>
-                        <a
-                          href={contact.link}
-                          target={contact.label !== 'Email' ? '_blank' : undefined}
-                          rel={contact.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                          className="px-3 py-1 bg-emerald-500 hover:bg-emerald-400 text-black rounded text-xs font-bold transition"
-                        >
-                          Open →
-                        </a>
                       </div>
                     </div>
                   </div>
