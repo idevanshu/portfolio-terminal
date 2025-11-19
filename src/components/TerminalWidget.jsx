@@ -12,6 +12,104 @@ const TerminalWidget = ({ setShowForm }) => {
   const hiddenInputRef = useRef(null);
   const modalInputRef = useRef(null);
 
+  // File system content
+  const fileSystem = {
+    'about.txt': `I'm a Computer Science undergraduate from India with a passion for building innovative solutions that make a difference. My journey in tech has been driven by curiosity and a love for solving complex problems.
+
+I specialize in full-stack web development with a focus on AI/ML integration,building high-performance systems, and creating intuitive user experiences. My work spans from video streaming applications to P2P file transfer systems, always pushing the boundaries of what's possible with modern web technologies.`,
+
+    'projects.txt': `Featured Projects:
+
+1. Video Chat Application
+   • Real-time video streaming with AV1 codec
+   • 4K streaming optimization
+   • Tech: React, FFmpeg, WebRTC
+
+2. p2pfiletransferRust
+   • Lightweight P2P file sharing over TCP
+   • Async Rust backend with send/receive modes
+   • Works behind NAT using port-forwarding/ngrok
+   • Tech: Rust, Tokio, Clap
+
+3. Portfolio Website
+   • Linux terminal-style interface
+   • Interactive CLI experience
+   • Tech: React.js, Tailwind CSS
+
+4. Quotation Generation System
+   • PDF export functionality
+   • Automated document generation
+   • Tech: Python, PDF processing
+
+Type 'repo' to view the GitHub repository.`,
+
+    'education.txt': `Education:
+
+Bachelor of Technology in Computer Science (AI/ML Specialization)
+  • Core Focus: Artificial Intelligence & Machine Learning
+  • Availability: Open to Work
+  • Location: India
+  
+Relevant Coursework:
+  • Deep Learning and Neural Networks
+  • Natural Language Processing
+  • Data Structures and Algorithms
+  • Computer Networks and Systems`,
+
+    'experience.txt': `Work Experience:
+
+Full-Stack Developer (Personal Projects)
+  • Built multiple production-ready web applications
+  • Implemented video streaming with advanced codec optimization
+  • Developed educational technology platforms
+  • Created automated document generation systems
+
+AI/ML Development
+  • Prompt engineering and LLM integration
+  • NLP and language processing applications
+  • Test automation and mock test creation
+
+DevOps & Infrastructure
+  • Deployed applications on Vercel, DigitalOcean
+  • Configured DNS and VPN solutions (AdGuard Home, WireGuard)
+  • Docker containerization and Linux system administration
+
+Skills: React.js, Python, Flask, Streamlit, FFmpeg, Docker, API Development`,
+
+    'contact.txt': `Contact Information:
+
+GitHub:   github.com/idevanshu
+DM:       Type "dm" to send a direct message
+X:        x.com/iamdevanshu04
+LinkedIn: www.linkedin.com/in/idevanshu
+Website:  idevanshu.com
+
+Feel free to reach out for collaboration or opportunities!`,
+
+    'resume.pdf': `[PDF File - Use 'resume' command to download]
+
+This is a PDF document containing my complete resume.
+To download, type: resume`,
+
+    'skills.txt': `Programming Languages:
+  JavaScript, Python, Rust, HTML/CSS
+
+Frontend:
+  React.js, Tailwind CSS, Responsive Design
+
+Backend:
+  Flask, Node.js, RESTful APIs, Streamlit
+
+AI/ML:
+  PyTorch, NLP, Prompt Engineering
+
+DevOps:
+  Docker, Linux, Vercel, DigitalOcean, WireGuard
+
+Tools:
+  Git, FFmpeg, WebRTC, AV1 Codec`,
+  };
+
   const downloadResume = () => {
     const fileId = '1QLbOpeWxc3czybv2Vuz5qB3YeY8NKdd7';
     const directDownloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
@@ -44,79 +142,39 @@ Devanshu_Resume.pdf   100%[===================>]
   projects   - See my projects
   education  - View my education
   experience - See my work experience
+  skills     - View my technical skills
   contact    - Get my contact information
   dm         - Send me a direct message
   resume     - Download my resume
   repo       - View GitHub repository
+  ls         - List available files
+  cat <file> - Display file contents
   clear      - Clear terminal
   help       - Show this help message`,
     }),
 
     about: () => ({
-      output: `I'm a Computer Science undergraduate from India with a passion for building 
-innovative solutions that make a difference. My journey in tech has been driven by curiosity and a love for solving complex problems.`,}),
+      output: fileSystem['about.txt'],
+    }),
 
     projects: () => ({
-      output: `Featured Projects:
-
-1. Video Chat Application
-   • Real-time video streaming with AV1 codec
-   • 4K streaming optimization
-   • Tech: React, FFmpeg, WebRTC
-
-2. p2pfiletransferRust
-   • Lightweight P2P file sharing over TCP
-   • Async Rust backend with send/receive modes
-   • Works behind NAT using port-forwarding/ngrok
-   • Tech: Rust, Tokio, Clap
-
-3. Portfolio Website
-   • Linux terminal-style interface
-   • Interactive CLI experience
-   • Tech: React.js, Tailwind CSS
-
-4. Quotation Generation System
-   • PDF export functionality
-   • Automated document generation
-   • Tech: Python, PDF processing
-
-Type 'repo' to view the GitHub repository.`,
+      output: fileSystem['projects.txt'],
     }),
 
     education: () => ({
-      output: `Education:
-
-Bachelor of Technology in Computer Science (AI/ML Specialization)
-  • Core Focus: Artificial Intelligence & Machine Learning
-  • Availability: Open to Work
-  • Location: India`,
+      output: fileSystem['education.txt'],
     }),
 
     experience: () => ({
-      output: `Work Experience:
+      output: fileSystem['experience.txt'],
+    }),
 
-Full-Stack Developer (Personal Projects)
-  • Built multiple production-ready web applications
-  • Implemented video streaming with advanced codec optimization
-  • Developed educational technology platforms
-  • Created automated document generation systems
-
-AI/ML Development
-  • Prompt engineering and LLM integration
-  • NLP and language processing applications
-  • Test automation and mock test creation
-
-Skills: React.js, Python, Flask, Streamlit, FFmpeg, Docker, API Development`,
+    skills: () => ({
+      output: fileSystem['skills.txt'],
     }),
 
     contact: () => ({
-      output: `Contact Information:
-GitHub:   github.com/idevanshu
-dm:       Type "dm" send a direct message.
-X:        x.com/iamdevanshu04
-LinkedIn: www.linkedin.com/in/idevanshu
-
-Feel free to reach out for collaboration or opportunities!`,
+      output: fileSystem['contact.txt'],
     }),
 
     repo: () => ({
@@ -129,7 +187,7 @@ Star ⭐ the repo if you like it!`,
     resume: downloadResume,
     clear: () => ({ clear: true }),
 
-      dm: () => {
+    dm: () => {
       if (setShowForm) {
         setShowForm(true);
       }
@@ -143,6 +201,7 @@ Star ⭐ the repo if you like it!`,
 projects.txt
 education.txt
 experience.txt
+skills.txt
 contact.txt
 resume.pdf`,
     }),
@@ -158,7 +217,8 @@ resume.pdf`,
       type: 'output',
       content: `Welcome to Portfolio Terminal! 🚀
 Type 'help' to see list of available commands.
-Type 'repo' to check out the GitHub.
+Type 'ls' to list available files.
+Type 'cat <filename>' to read file contents.
 Type 'resume' to download my resume.
 --`,
     };
@@ -176,10 +236,8 @@ Type 'resume' to download my resume.
   // Handle maximize/minimize - update visible history
   useEffect(() => {
     if (isMaximized) {
-      // When maximized, show full history
       setHistory(fullHistory);
     } else {
-      // When minimized, show only last 2 conversations
       const welcomeMessage = fullHistory[0];
       const recentEntries = fullHistory.slice(-4);
 
@@ -205,7 +263,7 @@ Type 'resume' to download my resume.
   }, [isMaximized]);
 
   const handleCommand = (cmd) => {
-    const trimmedCmd = cmd.trim().toLowerCase();
+    const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
 
     setCommandHistory((prev) => [...prev, cmd]);
@@ -213,8 +271,27 @@ Type 'resume' to download my resume.
 
     const newCommandEntry = { type: 'command', content: cmd };
 
-    if (commands[trimmedCmd]) {
-      const result = commands[trimmedCmd]();
+    // Handle cat command
+    if (trimmedCmd.toLowerCase().startsWith('cat ')) {
+      const fileName = trimmedCmd.substring(4).trim();
+      
+      if (fileSystem[fileName]) {
+        const newOutputEntry = { type: 'output', content: fileSystem[fileName] };
+        setFullHistory((prev) => [...prev, newCommandEntry, newOutputEntry]);
+      } else {
+        const errorEntry = {
+          type: 'error',
+          content: `cat: ${fileName}: No such file or directory`,
+        };
+        setFullHistory((prev) => [...prev, newCommandEntry, errorEntry]);
+      }
+      return;
+    }
+
+    // Handle other commands
+    const cmdLower = trimmedCmd.toLowerCase();
+    if (commands[cmdLower]) {
+      const result = commands[cmdLower]();
 
       if (result.clear) {
         const welcomeMsg = {
