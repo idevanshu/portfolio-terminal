@@ -217,8 +217,6 @@ resume.pdf`,
       type: 'output',
       content: `Welcome to Portfolio Terminal! 🚀
 Type 'help' to see list of available commands.
-Type 'ls' to list available files.
-Type 'cat <filename>' to read file contents.
 Type 'resume' to download my resume.
 --`,
     };
