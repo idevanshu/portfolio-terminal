@@ -379,7 +379,7 @@ Hrdaye basahu sur bhoop.`;
         {isFinished && (
           <div className="mt-8 p-6 bg-gradient-to-br from-red-900/60 to-orange-900/40 backdrop-blur-md rounded-3xl border-2 border-orange-500/50 shadow-2xl shadow-orange-500/30 animate-in">
             <h2 className="text-2xl mb-4 text-center bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent font-bold">
-              🙏 Test Complete! Jai Hanuman! 🚩
+              🙏 Jai Bajrangbali 🚩
             </h2>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-4 bg-red-950/30 rounded-xl border border-red-500/20">
