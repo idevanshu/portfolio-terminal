@@ -5,8 +5,20 @@ import ContactFormModal from './ContactFormModal';
 
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
-  return (
+
+  return (  
     <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-[#0a0e27] via-[#0b2031] to-[#0a0e29] relative overflow-hidden">
+
+      {/* Om Logo - Centered and Smaller */}
+      <Link 
+        to="/hanuman-chalisa"
+        className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 text-2xl text-orange-500 hover:text-orange-400 hover:scale-110 transition-all duration-300 drop-shadow-[0_0_15px_rgba(249,115,22,0.5)] hover:drop-shadow-[0_0_25px_rgba(249,115,22,0.8)]"
+        title="Hanuman Chalisa Typing Test"
+        aria-label="Hanuman Chalisa Typing Test"
+      >
+        ॐ
+      </Link>
+
       {/* Animated Background Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-96 h-96 bg-[#0b2031]/40 rounded-full blur-3xl animate-float" />
@@ -64,7 +76,6 @@ const Hero = () => {
                     className="w-6 h-6 transition-transform group-hover:scale-110 brightness-0 invert"
                   />
                 </div>
-
                 <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
                   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C/C++" title="C/C++" className="w-6 h-6 transition-transform group-hover:scale-110" />
                 </div>
@@ -100,8 +111,9 @@ const Hero = () => {
         </div>
 
         <TerminalWidget setShowForm={setShowForm} />
-        <ContactFormModal showForm={showForm} setShowForm={setShowForm} />
       </div>
+
+      <ContactFormModal showForm={showForm} setShowForm={setShowForm} />
 
       <style jsx>{`
         @keyframes fadeIn {
