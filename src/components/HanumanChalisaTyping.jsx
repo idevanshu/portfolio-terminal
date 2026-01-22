@@ -10,6 +10,7 @@ const HanumanChalisaTyping = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const containerRef = useRef(null);
+  const clickSoundRef = useRef(null);
 
   const chalisaText = `Shri Guru Charan Saroj Raj
 Nij mane mukure sudhar
@@ -173,6 +174,12 @@ Hrdaye basahu sur bhoop.`;
 
   useEffect(() => {
     containerRef.current?.focus();
+    // Initialize click sound
+    if (!clickSoundRef.current) {
+      clickSoundRef.current = new Audio('/sounds/click.mp3');
+      clickSoundRef.current.volume = 0.5;
+    }
+
 
     const handleGlobalKeyDown = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -196,6 +203,11 @@ Hrdaye basahu sur bhoop.`;
       if (typed === ' ' || typed === 'Enter') {
         e.preventDefault();
         if (expected === '\n' || expected === ' ') {
+          // Play click sound
+          if (clickSoundRef.current) {
+            clickSoundRef.current.currentTime = 0;
+            clickSoundRef.current.play().catch(e => console.log('Audio play failed:', e));
+          }
           setCorrectChars(prev => prev + 1);
           setCurrentCharIndex(prev => {
             const newIndex = prev + 1;
@@ -217,6 +229,11 @@ Hrdaye basahu sur bhoop.`;
       e.preventDefault();
 
       if (typed === expected) {
+        // Play click sound
+        if (clickSoundRef.current) {
+          clickSoundRef.current.currentTime = 0;
+          clickSoundRef.current.play().catch(e => console.log('Audio play failed:', e));
+        }
         setCorrectChars(prev => prev + 1);
         setCurrentCharIndex(prev => {
           const newIndex = prev + 1;
