@@ -35,16 +35,19 @@ const Hero = () => {
             </div>
 
             <div className="mb-6 text-base sm:text-lg lg:text-xl">
-              <span className="text-cyan-400">AIML Engineer</span>
-              <span className="text-slate-400"> | </span>
-              <span className="text-cyan-400">DevOps Engineer</span>
-            </div>
+  <span className="text-cyan-400">AIML Engineer</span>
+  <span className="text-slate-400"> | </span>
+  <span className="text-cyan-400">DevOps Architect</span>
+  <span className="text-slate-400"> | </span>
+  <span className="text-cyan-400">MLOps Engineer</span>
+</div>
 
-            <div className="space-y-3 text-sm sm:text-base text-slate-300 mb-8">
-              <p>I'm into <span className="text-cyan-300">fast networking</span>, <span className="text-cyan-300">computers</span>, and building innovative solutions.</p>
-              <p>Currently exploring <span className="text-cyan-400">web3</span>, <span className="text-cyan-400">AI agents</span>, and automated AI-driven IoT systems.</p>
-              <p>I love solving complex problems and turning ideas into reality.</p>
-            </div>
+<div className="space-y-3 text-sm sm:text-base text-slate-300 mb-8">
+  <p>I'm obsessed with <span className="text-cyan-300">lightning-fast networks</span>, <span className="text-cyan-300">high-performance computing</span>, and crafting solutions that push boundaries.</p>
+  <p>Deep-diving into <span className="text-cyan-400">web3 infrastructure</span>, <span className="text-cyan-400">autonomous AI agents</span>, and intelligent IoT ecosystems that think for themselves.</p>
+  <p>I thrive on cracking tough problems and shipping ideas from concept to production—fast.</p>
+</div>
+
 
             <div className="mb-8">
               <a
