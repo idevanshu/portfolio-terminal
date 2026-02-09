@@ -104,14 +104,14 @@ AI/ML:
   PyTorch, NLP, Prompt Engineering
 
 DevOps:
-  Docker, Linux, Vercel, DigitalOcean, WireGuard
+  Docker, Linux, AWS, DigitalOcean, WireGuard
 
 Tools:
   Git, FFmpeg, WebRTC, AV1 Codec`,
   };
 
   const downloadResume = () => {
-    const fileId = '1OOB4yEdA0FJ51XXf8JIfrsNi6N1EcKA2';
+    const fileId = '1rMQL4iNnF8CntPqcmAYB0IgV8XlgMaMf';
     const directDownloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
     const link = document.createElement('a');
