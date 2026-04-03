@@ -76,9 +76,9 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0a0e27] via-[#0b2031] to-[#0a0e29] text-slate-100 px-4 py-10 relative overflow-hidden">
       {/* Animated Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#0b2031]/40 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float-delayed" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-[#0b2031]/40 rounded-full blur-xl animate-float will-change-transform" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-xl animate-float-delayed will-change-transform" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -120,7 +120,7 @@ const Projects = () => {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="group relative bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md border border-[#38404d]/50 rounded-lg p-6 hover:border-cyan-400/70 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer hover:scale-[1.02]"
+              className="group relative bg-[#0b2031]/70 border border-[#38404d]/50 rounded-lg p-6 hover:border-cyan-400/70 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer hover:scale-[1.02]"
             >
               {/* Icon */}
               <div className="text-cyan-400 mb-4 group-hover:scale-110 transition-transform">
@@ -171,7 +171,7 @@ const Projects = () => {
             href="https://github.com/idevanshu"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 border-2 border-cyan-400/70 text-cyan-400 hover:from-cyan-500/30 hover:to-teal-500/30 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-lg hover:shadow-cyan-500/30 transition-all rounded font-bold backdrop-blur-sm"
+            className="inline-block px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 border-2 border-cyan-400/70 text-cyan-400 hover:from-cyan-500/30 hover:to-teal-500/30 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-lg hover:shadow-cyan-500/30 transition-all rounded font-bold"
           >
             View All on GitHub →
           </a>
@@ -181,7 +181,7 @@ const Projects = () => {
       {/* Project Detail Modal */}
       {selectedProject && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 animate-fade-in"
           onClick={() => setSelectedProject(null)}
         >
           <div
@@ -189,7 +189,7 @@ const Projects = () => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-[#0a0e27] to-[#0b2031] border-b border-[#38404d] p-6 flex items-start justify-between backdrop-blur-md">
+            <div className="sticky top-0 bg-gradient-to-r from-[#0a0e27] to-[#0b2031] border-b border-[#38404d] p-6 flex items-start justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-cyan-400 mb-2 font-mono">
                   {selectedProject.name}
@@ -269,7 +269,7 @@ const Projects = () => {
                   href={selectedProject.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 border-2 border-cyan-400/70 text-cyan-400 hover:from-cyan-500/30 hover:to-teal-500/30 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-lg hover:shadow-cyan-500/30 transition-all rounded font-bold text-center backdrop-blur-sm"
+                  className="flex-1 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 border-2 border-cyan-400/70 text-cyan-400 hover:from-cyan-500/30 hover:to-teal-500/30 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-lg hover:shadow-cyan-500/30 transition-all rounded font-bold text-center"
                 >
                   View on GitHub
                 </a>
@@ -278,7 +278,7 @@ const Projects = () => {
                     href={selectedProject.secondary}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 px-6 py-3 border-2 border-teal-400/70 text-teal-400 hover:bg-teal-500/10 hover:border-teal-300 hover:text-teal-300 hover:shadow-lg hover:shadow-teal-500/30 transition-all rounded font-bold text-center backdrop-blur-sm"
+                    className="flex-1 px-6 py-3 border-2 border-teal-400/70 text-teal-400 hover:bg-teal-500/10 hover:border-teal-300 hover:text-teal-300 hover:shadow-lg hover:shadow-teal-500/30 transition-all rounded font-bold text-center"
                   >
                     Related Repo
                   </a>
@@ -289,48 +289,6 @@ const Projects = () => {
         </div>
       )}
 
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0) scale(1);
-          }
-          50% {
-            transform: translateY(-20px) scale(1.05);
-          }
-        }
-
-        @keyframes float-delayed {
-          0%, 100% {
-            transform: translateY(0) scale(1);
-          }
-          50% {
-            transform: translateY(20px) scale(1.05);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fadeIn 0.5s ease-out;
-        }
-
-        .animate-float {
-          animation: float 8s ease-in-out infinite;
-        }
-
-        .animate-float-delayed {
-          animation: float-delayed 10s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 };

@@ -120,7 +120,7 @@ const ContactFormModal = ({ showForm, setShowForm, availability }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in"
+      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 animate-fade-in"
       onClick={() => setShowForm(false)}
     >
       <div
@@ -134,8 +134,9 @@ const ContactFormModal = ({ showForm, setShowForm, availability }) => {
           <button
             onClick={() => setShowForm(false)}
             className="text-slate-400 hover:text-cyan-400 text-2xl transition"
+            aria-label="Close"
           >
-            ✕
+            <span aria-hidden="true">✕</span>
           </button>
         </div>
         <form onSubmit={onSubmit} className="space-y-5">
@@ -212,27 +213,6 @@ const ContactFormModal = ({ showForm, setShowForm, availability }) => {
           )}
         </form>
       </div>
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.3s ease-out;
-        }
-        @keyframes spin {
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-spin {
-          animation: spin 1s linear infinite;
-        }
-      `}</style>
     </div>
   );
 };

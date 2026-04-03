@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import TerminalWidget from './TerminalWidget';
-import ContactFormModal from './ContactFormModal';
+
+const ContactFormModal = lazy(() => import('./ContactFormModal'));
 
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
@@ -20,9 +21,9 @@ const Hero = () => {
       </Link>
 
       {/* Animated Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#0b2031]/40 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float-delayed" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-[#0b2031]/40 rounded-full blur-xl animate-float will-change-transform" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-xl animate-float-delayed will-change-transform" />
       </div>
 
       <div className="max-w-7xl w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-12 relative z-10">
@@ -54,7 +55,7 @@ const Hero = () => {
                 href="https://drive.google.com/file/d/1rMQL4iNnF8CntPqcmAYB0IgV8XlgMaMf/view"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-6 py-2 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 border-2 border-cyan-400/70 text-cyan-400 hover:from-cyan-500/30 hover:to-teal-500/30 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-lg hover:shadow-cyan-500/30 transition-all rounded font-bold backdrop-blur-sm"
+                className="inline-block px-6 py-2 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 border-2 border-cyan-400/70 text-cyan-400 hover:from-cyan-500/30 hover:to-teal-500/30 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-lg hover:shadow-cyan-500/30 transition-all rounded font-bold"
               >
                 Resume
               </a>
@@ -65,43 +66,45 @@ const Hero = () => {
                 <span className="text-teal-400">$</span> ls ./Skills
               </div>
               <div className="flex flex-wrap gap-2 items-center">
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
                   <img
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg"
                     alt="Rust"
                     title="Rust"
-                    className="w-6 h-6 transition-transform group-hover:scale-110 brightness-0 invert"
+                    width="24"
+                    height="24"
+                    className="w-6 h-6 transition-transform group-hover:scale-110 brightness-0 invert" fetchPriority="low"
                   />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C/C++" title="C/C++" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C/C++" title="C/C++" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" title="Flask" className="w-6 h-6 transition-transform group-hover:scale-110 invert" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" title="Flask" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110 invert" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" title="Django" className="w-6 h-6 transition-transform group-hover:scale-110 invert" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" title="Django" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110 invert" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" title="PyTorch" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" title="PyTorch" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="SQL" title="SQL" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="SQL" title="SQL" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React" width="24" height="24" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
-                <div className="group p-2 bg-gradient-to-br from-[#0b2031]/50 to-[#0a0e27]/50 backdrop-blur-md rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker" className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <div className="group p-2 bg-[#0b2031]/70 rounded-lg border border-[#38404d]/50 hover:border-cyan-400/70 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker" className="w-6 h-6 transition-transform group-hover:scale-110" fetchPriority="low" />
                 </div>
               </div>
             </div>
@@ -116,50 +119,10 @@ const Hero = () => {
         <TerminalWidget setShowForm={setShowForm} />
       </div>
 
-      <ContactFormModal showForm={showForm} setShowForm={setShowForm} />
+      <Suspense fallback={null}>
+        {showForm && <ContactFormModal showForm={showForm} setShowForm={setShowForm} />}
+      </Suspense>
 
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0) scale(1);
-          }
-          50% {
-            transform: translateY(-20px) scale(1.05);
-          }
-        }
-
-        @keyframes float-delayed {
-          0%, 100% {
-            transform: translateY(0) scale(1);
-          }
-          50% {
-            transform: translateY(20px) scale(1.05);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fadeIn 0.5s ease-out;
-        }
-
-        .animate-float {
-          animation: float 8s ease-in-out infinite;
-        }
-
-        .animate-float-delayed {
-          animation: float-delayed 10s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 };
